@@ -1,0 +1,17 @@
+{
+  "name": "Small MIS",
+  "version": "1.0.0",
+  "description": "A small medical information system, developing for training purpose only",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node index.js"
+  },
+  "author": "Mikhail Smolin",
+  "license": "MIT",
+  "dependencies": {
+    "hapi": "^18.0.0",
+    "joi": "^14.3.1",
+    "mongoose": "^5.4.8"
+  }
+}
