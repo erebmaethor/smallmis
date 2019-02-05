@@ -1,11 +1,16 @@
 {
-  "name": "Small MIS",
+  "name": "small-mis",
   "version": "1.0.0",
   "description": "A small medical information system, developing for training purpose only",
   "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/erebmaethor/smallmis.git"
+  },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node index.js"
+    "test": "jest",
+    "start": "node index.js",
+    "dev": "supervisor index.js"
   },
   "author": "Mikhail Smolin",
   "license": "MIT",
@@ -13,5 +18,8 @@
     "hapi": "^18.0.0",
     "joi": "^14.3.1",
     "mongoose": "^5.4.8"
+  },
+  "devDependencies": {
+    "jest": "^24.1.0"
   }
 }
