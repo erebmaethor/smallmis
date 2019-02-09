@@ -8,7 +8,7 @@
     "url": "https://github.com/erebmaethor/smallmis.git"
   },
   "scripts": {
-    "test": "jest",
+    "test": "mocha",
     "start": "node index.js",
     "dev": "supervisor index.js"
   },
@@ -20,6 +20,8 @@
     "mongoose": "^5.4.8"
   },
   "devDependencies": {
-    "jest": "^24.1.0"
+    "chai": "^4.2.0",
+    "faker": "^4.1.0",
+    "mocha": "^5.2.0"
   }
 }

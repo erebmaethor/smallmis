@@ -14,7 +14,7 @@ exports.getPatientsList = async (req, h) => {
   if (req.query.firstName) {
     filter.firstName = new RegExp('^' + req.query.firstName, 'i');
   }
-  
+
   const answer = {
     pagination: req.query.pagination,
     limit: req.query.limit,
