@@ -78,7 +78,7 @@ module.exports = {
       firstName: 'София',
       fathersName: 'Григорьевна',
       dateOfBirth: new Date('2013-06-12'),
-      officialSex: 'mfeale',
+      officialSex: 'female',
       biologicalSex: '',
       address: '424000, г. Йошкар-Ола, ул. Красноармейская, д. 103. кв. 55',
       phoneNumber: '+7-899-000-00-00',

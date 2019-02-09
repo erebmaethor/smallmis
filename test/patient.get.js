@@ -1,7 +1,7 @@
 const chai = require('chai');
 expect = require('chai').expect;
 
-const server = require('../server/hapi');
+const server = require('../server/hapi').server;
 //const mongoose = require('mongoose');
 const patientModel = require('../api/patient/model').model;
 

@@ -1,4 +1,3 @@
-const server = require('../server/hapi');
 const mongoose = require('mongoose');
 
 const patientModel = require('../api/patient/model').model;

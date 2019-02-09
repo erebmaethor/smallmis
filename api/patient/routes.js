@@ -21,6 +21,8 @@ module.exports = [
       },
       failAction: validateInvalidAction,
     },
+    tags: ['api', 'patients'],
+    description: 'Provides list of patients.',
   },
 },
 
@@ -33,6 +35,7 @@ module.exports = [
       payload: patientJoiSchema,
       failAction: validateInvalidAction,
     },
+    tags: ['api', 'patient'],
   }
 },
 
@@ -47,6 +50,7 @@ module.exports = [
       },
       failAction: validateInvalidAction,
     },
+    tags: ['api', 'patient'],
   },
 },
 
@@ -65,6 +69,7 @@ module.exports = [
       }),
       failAction: validateInvalidAction,
     },
+    tags: ['api', 'patient'],
   },
 },
 
@@ -78,6 +83,7 @@ module.exports = [
         id: Joi.string().hex().length(24),
       },
     },  
+    tags: ['api', 'patient'],
   },
 },
 ];
