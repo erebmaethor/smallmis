@@ -13,11 +13,16 @@ module.exports = [
   options: {
     validate: {
       query: {
-        familyName: Joi.string().regex(/^[a-zA-Zа-яА-ЯёЁ0-9 '-]+$/).max(150),
-        firstName: Joi.string().regex(/^[a-zA-Zа-яА-ЯёЁ0-9 '-]+$/).max(100),
-        limit: Joi.number().integer().min(1).max(100).default(25),
-        offset: Joi.number().integer().default(0),
-        pagination: Joi.boolean().default(false),
+        familyName: Joi.string().regex(/^[a-zA-Zа-яА-ЯёЁ0-9 '-]+$/).max(150)
+          .description('Family (last) name or it\'s beginning part for patient search.'),
+        firstName: Joi.string().regex(/^[a-zA-Zа-яА-ЯёЁ0-9 '-]+$/).max(100)
+          .description('First name or part, same as familyName.'),
+        limit: Joi.number().integer().min(1).max(100).default(25)
+          .description('Amount of patients per page.'),
+        offset: Joi.number().integer().default(0)
+          .description('How much patients to skip, applicable if pagination is on.'),
+        pagination: Joi.boolean().default(false)
+          .description('Pagination on/off. Usually off due to better perfomance.'),
       },
       failAction: validateInvalidAction,
     },
@@ -36,6 +41,7 @@ module.exports = [
       failAction: validateInvalidAction,
     },
     tags: ['api', 'patient'],
+    description: 'Adds patient to the DB and returns full info of him/her (including _id).',
   }
 },
 
