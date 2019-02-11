@@ -6,12 +6,11 @@ const testContent = require('./patients.content').patients;
 
 before(async () => {
   
-  const dbConnect = () => {require('../server/mongo');}
+  await require('../server/mongo');
   
-  await dbConnect();
-  newP = new patientModel({firstName: 'John', familyName: 'Smith'});
-  await newP.save();
-  await mongoose.connection.dropCollection('patients');
+  if (await patientModel.countDocuments()) {
+    await mongoose.connection.dropCollection('patients');
+  }
     
   await Promise.all(testContent.map( async (patient) => {
     const newPatient = new patientModel(patient);    
@@ -30,7 +29,7 @@ exports.getRandPatient = async () => {
   
   try {
     
-    const patCount = await patientModel.countDocuments();
+    const patCount = await patientModel.countDocuments(); // we need an exact count, not estimated
     randomPat = Math.round(Math.random() * (patCount - 1));
     const patients = await patientModel.find({}).limit(1).skip(randomPat);
     return patients[0];
