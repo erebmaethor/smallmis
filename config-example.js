@@ -1,29 +1,31 @@
 let env = process.env.NODE_ENV;
-if (env === undefined) {env = 'dev';}
+if (env === undefined) {
+  env = 'dev';
+}
 
 const dev = {
- hapi: {
-   host: 'localhost',
-   port: 3000,
- },
- db: {
-   uri: "",
- }
+  hapi: {
+    host: 'localhost',
+    port: 3000,
+  },
+  db: {
+    uri: '',
+  },
 };
 
 const test = {
- hapi: {
-   host: 'localhost',
-   port: 3000,
- },
- db: {
-   uri: "",
- }
+  hapi: {
+    host: 'localhost',
+    port: 3000,
+  },
+  db: {
+    uri: '',
+  },
 };
 
 const config = {
- dev,
- test
+  dev,
+  test,
 };
 
 module.exports = config[env];

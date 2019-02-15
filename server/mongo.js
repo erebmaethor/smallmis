@@ -17,24 +17,19 @@ mongoose.connection.on('close', () => {
   console.log('Connection with MongoDB Closed');
 });
 
-mongoose.connection.on('error', (error) => {
+mongoose.connection.on('error', error => {
   console.error('MongoDB error: ' + error);
 });
 
-
 (async () => {
-
   try {
-
     await mongoose.connect(dbURI, {
       autoReconnect: true,
       reconnectTries: 1000000,
       reconnectInterval: 1000,
-      useNewUrlParser: true
+      useNewUrlParser: true,
     });
-  } catch(e) {
-
+  } catch (e) {
     console.error(e);
   }
-
 })();

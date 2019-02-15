@@ -4,11 +4,8 @@
 ///////////////////////////////////////////////////////////
 
 module.exports = {
-  
-  patients: 
-  [
+  patients: [
     {
-    
       familyName: 'Иванов',
       firstName: 'Степан',
       fathersName: 'Аркадьевич',
@@ -19,9 +16,36 @@ module.exports = {
       phoneNumber: '+7-899-000-00-00',
       lastUpdate: new Date(),
       updates: [],
+      notes: [
+        {
+          date: new Date('2019-02-13'),
+          dateAdded: new Date(),
+          doctor: 'Smolin',
+          medcenter: 'Luch',
+          cardNumber: '75643',
+          noteType: 'ambneur',
+          data: {
+            complaints: 'Болит голова',
+            objective: 'BP 120/80 mmHg, HR 72 min, живот мягкий, б/б.',
+            neurStatus: 'В сознании. Со стороны ЧН - б/о. СПР D=S, оживлены',
+          },
+        },
+        {
+          date: new Date('2019-01-15'),
+          dateAdded: new Date(),
+          doctor: 'Smolin',
+          medcenter: 'Luch',
+          cardNumber: '75643',
+          noteType: 'ambneur',
+          data: {
+            complaints: 'Болит спина.',
+            objective: 'BP 120/80 mmHg, HR 72 min, живот мягкий, б/б.',
+            neurStatus: 'В сознании. Со ст. ЧН - б/о. СПР D=S, оживлены',
+          },
+        },
+      ],
     },
     {
-    
       familyName: 'Иванов',
       firstName: 'Антон',
       fathersName: 'Николаевич',
@@ -32,9 +56,36 @@ module.exports = {
       phoneNumber: '+7-899-000-00-00',
       lastUpdate: new Date(),
       updates: [],
+      notes: [
+        {
+          date: new Date('2019-02-13'),
+          dateAdded: new Date(),
+          doctor: 'Smolin',
+          medcenter: 'Luch',
+          cardNumber: '75643',
+          noteType: 'ambneur',
+          data: {
+            complaints: 'Болит голова',
+            objective: 'BP 120/80 mmHg, HR 72 min, живот мягкий, б/б.',
+            neurStatus: 'В сознании. Со стороны ЧН - б/о. СПР D=S, оживлены',
+          },
+        },
+        {
+          date: new Date('2019-01-15'),
+          dateAdded: new Date(),
+          doctor: 'Smolin',
+          medcenter: 'Luch',
+          cardNumber: '75643',
+          noteType: 'ambneur',
+          data: {
+            complaints: 'Болит спина.',
+            objective: 'BP 120/80 mmHg, HR 72 min, живот мягкий, б/б.',
+            neurStatus: 'В сознании. Со ст. ЧН - б/о. СПР D=S, оживлены',
+          },
+        },
+      ],
     },
     {
-    
       familyName: 'Иванов',
       firstName: 'Кирилл',
       fathersName: 'Филиппович',
@@ -45,9 +96,36 @@ module.exports = {
       phoneNumber: '+7-899-000-00-00',
       lastUpdate: new Date(),
       updates: [],
+      notes: [
+        {
+          date: new Date('2019-02-13'),
+          dateAdded: new Date(),
+          doctor: 'Smolin',
+          medcenter: 'Luch',
+          cardNumber: '75643',
+          noteType: 'ambneur',
+          data: {
+            complaints: 'Болит голова',
+            objective: 'BP 120/80 mmHg, HR 72 min, живот мягкий, б/б.',
+            neurStatus: 'В сознании. Со стороны ЧН - б/о. СПР D=S, оживлены',
+          },
+        },
+        {
+          date: new Date('2019-01-15'),
+          dateAdded: new Date(),
+          doctor: 'Smolin',
+          medcenter: 'Luch',
+          cardNumber: '75643',
+          noteType: 'ambneur',
+          data: {
+            complaints: 'Болит спина.',
+            objective: 'BP 120/80 mmHg, HR 72 min, живот мягкий, б/б.',
+            neurStatus: 'В сознании. Со ст. ЧН - б/о. СПР D=S, оживлены',
+          },
+        },
+      ],
     },
     {
-  
       familyName: 'Петров',
       firstName: 'Юрий',
       fathersName: 'Николаевич',
@@ -58,9 +136,36 @@ module.exports = {
       phoneNumber: '+7-899-000-00-00',
       lastUpdate: new Date(),
       updates: [],
+      notes: [
+        {
+          date: new Date('2019-02-13'),
+          dateAdded: new Date(),
+          doctor: 'Smolin',
+          medcenter: 'Luch',
+          cardNumber: '75643',
+          noteType: 'ambneur',
+          data: {
+            complaints: 'Болит голова',
+            objective: 'BP 120/80 mmHg, HR 72 min, живот мягкий, б/б.',
+            neurStatus: 'В сознании. Со стороны ЧН - б/о. СПР D=S, оживлены',
+          },
+        },
+        {
+          date: new Date('2019-01-15'),
+          dateAdded: new Date(),
+          doctor: 'Smolin',
+          medcenter: 'Luch',
+          cardNumber: '75643',
+          noteType: 'ambneur',
+          data: {
+            complaints: 'Болит спина.',
+            objective: 'BP 120/80 mmHg, HR 72 min, живот мягкий, б/б.',
+            neurStatus: 'В сознании. Со ст. ЧН - б/о. СПР D=S, оживлены',
+          },
+        },
+      ],
     },
     {
-  
       familyName: 'Уругваева',
       firstName: 'Анна',
       fathersName: 'Михайловна',
@@ -71,9 +176,36 @@ module.exports = {
       phoneNumber: '+7-899-000-00-00',
       lastUpdate: new Date(),
       updates: [],
+      notes: [
+        {
+          date: new Date('2019-02-13'),
+          dateAdded: new Date(),
+          doctor: 'Smolin',
+          medcenter: 'Luch',
+          cardNumber: '75643',
+          noteType: 'ambneur',
+          data: {
+            complaints: 'Болит голова',
+            objective: 'BP 120/80 mmHg, HR 72 min, живот мягкий, б/б.',
+            neurStatus: 'В сознании. Со стороны ЧН - б/о. СПР D=S, оживлены',
+          },
+        },
+        {
+          date: new Date('2019-01-15'),
+          dateAdded: new Date(),
+          doctor: 'Smolin',
+          medcenter: 'Luch',
+          cardNumber: '75643',
+          noteType: 'ambneur',
+          data: {
+            complaints: 'Болит спина.',
+            objective: 'BP 120/80 mmHg, HR 72 min, живот мягкий, б/б.',
+            neurStatus: 'В сознании. Со ст. ЧН - б/о. СПР D=S, оживлены',
+          },
+        },
+      ],
     },
     {
-  
       familyName: 'Куюкина',
       firstName: 'София',
       fathersName: 'Григорьевна',
@@ -83,6 +215,35 @@ module.exports = {
       address: '424000, г. Йошкар-Ола, ул. Красноармейская, д. 103. кв. 55',
       phoneNumber: '+7-899-000-00-00',
       lastUpdate: new Date(),
+      updates: [],
+      notes: [
+        {
+          date: new Date('2019-02-13'),
+          dateAdded: new Date(),
+          doctor: 'Smolin',
+          medcenter: 'Luch',
+          cardNumber: '75643',
+          noteType: 'ambneur',
+          data: {
+            complaints: 'Болит голова',
+            objective: 'BP 120/80 mmHg, HR 72 min, живот мягкий, б/б.',
+            neurStatus: 'В сознании. Со стороны ЧН - б/о. СПР D=S, оживлены',
+          },
+        },
+        {
+          date: new Date('2019-01-15'),
+          dateAdded: new Date(),
+          doctor: 'Smolin',
+          medcenter: 'Luch',
+          cardNumber: '75643',
+          noteType: 'ambneur',
+          data: {
+            complaints: 'Болит спина.',
+            objective: 'BP 120/80 mmHg, HR 72 min, живот мягкий, б/б.',
+            neurStatus: 'В сознании. Со ст. ЧН - б/о. СПР D=S, оживлены',
+          },
+        },
+      ],
     },
   ],
-}
+};
