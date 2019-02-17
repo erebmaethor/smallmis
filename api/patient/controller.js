@@ -68,7 +68,7 @@ exports.updatePatient = async (req, h) => {
     }
 
     // get the difference (because we store differences in `updates` subdocuments
-    // array for proper processing of records from the past)
+    // array for proper processing of notes from the past)
 
     const prepForCompare = x => {
       if (typeof x === 'undefined') return '';
@@ -111,9 +111,8 @@ exports.deletePatient = async (req, h) => {
     const patient = await patientModel.findByIdAndDelete(req.params.id);
     if (!patient) {
       return h.response('No patient with this ID').code(400);
-    } else {
-      return h.response('Patient deleted successfully').code(204);
     }
+    return h.response('Patient deleted successfully').code(204);
   } catch (err) {
     throw err;
   }
