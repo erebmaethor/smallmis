@@ -50,7 +50,7 @@ exports.addPatient = async (req, h) => {
 
 exports.getPatient = async (req, h) => {
   try {
-    const patient = await patientModel.findById(req.params.id);
+    const patient = await patientModel.findById(req.params.id, '-notes.data');
     if (!patient) {
       return h.response('No patient with this ID').code(400);
     }
