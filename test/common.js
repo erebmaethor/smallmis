@@ -33,10 +33,6 @@ exports.getRandPatient = async () => {
       .find({})
       .limit(1)
       .skip(randomPat);
-    /////////////////////
-    //console.log('Random Pat:', patients[0].familyName, patients[0].firstName, patients[0]._id);
-    //patients[0].notes.forEach((note) => {console.log(note._id)});
-    /////////////////////
     return patients[0];
   } catch (err) {
     console.error(err);
