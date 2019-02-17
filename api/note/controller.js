@@ -41,10 +41,7 @@ exports.getNote = async (req, h) => {
 
 exports.deleteNote = async (req, h) => {
   try {
-    const patient = await patientModel.findOne(
-      { 'notes._id': req.params.noteId },
-      'notes._id'
-    );
+    const patient = await patientModel.findOne({ 'notes._id': req.params.noteId }, 'notes._id');
 
     if (!patient) {
       return h.response('No note with this ID').code(400);
@@ -55,7 +52,7 @@ exports.deleteNote = async (req, h) => {
 
     patient.notes.id(req.params.noteId).remove();
     await patient.save();
-    
+
     return h.response('Note deleted successfully').code(204);
   } catch (err) {
     throw err;

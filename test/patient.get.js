@@ -17,7 +17,7 @@ describe('/patient/ GET', async function() {
       url: '/patient/' + patient._id,
     });
 
-    expect(res.statusCode).to.equal(200);   
+    expect(res.statusCode).to.equal(200);
     const payload = JSON.parse(res.payload);
     expect(payload.familyName).to.equal(patient.familyName);
     expect(payload.firstName).to.equal(patient.firstName);

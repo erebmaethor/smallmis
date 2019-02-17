@@ -17,8 +17,7 @@ describe('/patient/{patientId}/note/{noteId} DELETE', async function() {
 
     expect(res.statusCode).to.equal(204); // 204 deleted
     // check that patient is absent in DB after deleting
-    const deletedPatient = await patientModel.findOne(
-      { 'notes._id': randPatient.notes[0]._id });
+    const deletedPatient = await patientModel.findOne({ 'notes._id': randPatient.notes[0]._id });
     expect(deletedPatient).to.be.null;
   });
 
