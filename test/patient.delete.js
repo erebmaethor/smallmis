@@ -12,14 +12,17 @@ const getRandPatient = require('./common').getRandPatient;
 describe('/patient/ DELETE', async function() {
   it('it should delete patient', async function() {
     // first, get info or random patient
-    const patient = await getRandPatient();
+    const randPatient = await getRandPatient();
 
     const res = await server.inject({
       method: 'DELETE',
-      url: '/patient/' + patient._id,
+      url: '/patient/' + randPatient._id,
     });
 
     expect(res.statusCode).to.equal(204); // 204 deleted
+    // check that patient is absent in DB after deleting
+    const deletedPatient = await patientModel.findById(randPatient._id);
+    expect(deletedPatient).to.be.null;
   });
 
   it('it should reject with wrong _id', async function() {
