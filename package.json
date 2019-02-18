@@ -1,6 +1,6 @@
 {
   "name": "small-mis",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "A small medical information system, developing for training purpose only",
   "main": "index.js",
   "repository": {
