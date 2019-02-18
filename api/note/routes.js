@@ -50,7 +50,8 @@ module.exports = [
           noteId: v9s.id,
         },
       },
-      tags: ['api', 'patient'],
+      tags: ['api', 'note'],
+      description: 'Delete note',
     },
   },
 ];
