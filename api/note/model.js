@@ -19,7 +19,7 @@ const joiSchema = Joi.object({
   noteType: Joi.string()
     .max(10)
     .description('Type of note.'),
-  data: Joi.any().description('All data.'),
+  data: Joi.object().description('All data.'),
 });
 
 const schema = new mongoose.Schema({
