@@ -38,6 +38,7 @@ module.exports = [
       },
       tags: ['api', 'patients'],
       description: 'Provides list of patients.',
+      cors: true, /////////////////// it must be changed before deploy to prduction!!!
     },
   },
 

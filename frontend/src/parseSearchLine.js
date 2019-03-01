@@ -1,5 +1,3 @@
-//import v9s from '../../tools.validations';
-
 import parseCustomDate from './parseCustomDate';
 
 // first word in search line is the family name, second - first name,
@@ -8,16 +6,17 @@ import parseCustomDate from './parseCustomDate';
 // and word that parses to date is the dateOfBirth
 
 const parseSearchLine = (line, state) => {
-  // split search line by whitespace and filter double (or multi) whitespaces
   let textFields = [];
   let sexField, dateOfBirthField;
 
+  // split search line by whitespaces, filter double (or multi) whitespaces, and try to suggest what every element
+  // is it
   line
     .split(' ')
     .filter(word => word)
     .forEach(word => {
-      // word is sex descriptor
-      // Names can contains only one char. Thus, we must process it only if it isn't sex descriptor
+      // officialSex descriptor
+      // Humans' names can contains only one char. Thus, we must process it as a name only if it isn't sex descriptor
       let isSex = false;
       if (word.length === 1) {
         if (word === 'f' || word === 'ж') {
@@ -29,15 +28,16 @@ const parseSearchLine = (line, state) => {
         }
       }
 
-      // try to parse date of birth
+      // date of birth
       let dOb = parseCustomDate(word);
       if (dOb) {
         dateOfBirthField = dOb;
         return;
       }
 
-      // processing textFields
-      if (isSex) { // skip processing as a text field if it is the sex descriptor
+      // textFields
+      if (isSex) {
+        // skip processing as a text field if it is the sex descriptor
         return;
       }
       if (word.search(/^[a-zA-Zа-яА-ЯёЁ0-9 '-]+$/) === -1) {
