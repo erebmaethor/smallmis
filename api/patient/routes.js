@@ -20,6 +20,10 @@ module.exports = [
             .regex(v9s.regx.name)
             .max(100)
             .description('First name or part, same as familyName.'),
+          fathersName: Joi.string()
+            .regex(v9s.regx.name)
+            .max(100)
+            .description("Father's name or part, same as familyName."),
           limit: Joi.number()
             .integer()
             .min(1)

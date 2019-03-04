@@ -34,16 +34,18 @@ class SearchForm extends Component {
 
   handleSearchType(event) {
     const newState = parseSearchLine(event.target.value);
-    // compare old and new FamilyName and FirstName, if equal - deny request to API
+    // compare old and new 'Names', if equal - deny request to API
     if (
       this.state.familyName.value !== newState.familyName.value ||
-      this.state.firstName.value !== newState.firstName.value
+      this.state.firstName.value !== newState.firstName.value ||
+      this.state.fathersName.value !== newState.fathersName.value
     ) {
-      if (!newState.familyName.error && !newState.firstName.error) { // use setTimeout to avoid excess API reqiests at every type
+      if (!newState.familyName.error && !newState.firstName.error) {
+        // use setTimeout to avoid excess API reqiests at every type
         if (this.state.reqTimer) {
           clearTimeout(this.state.reqTimer);
         }
-        newState.reqTimer = setTimeout(this.requestPatsList(newState), 300); 
+        newState.reqTimer = setTimeout(this.requestPatsList(newState), 300);
       }
     }
     this.setState(newState);

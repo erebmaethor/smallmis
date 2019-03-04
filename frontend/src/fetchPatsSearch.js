@@ -1,5 +1,9 @@
 export default function fetchPatsSearch(newState) {
-  const rawQuery = { familyName: newState.familyName.value, firstName: newState.firstName.value };
+  const rawQuery = {
+    familyName: newState.familyName.value,
+    firstName: newState.firstName.value,
+    fathersName: newState.fathersName.value,
+  };
   const query = Object.keys(rawQuery)
     .filter(k => rawQuery[k])
     .map(k => k + '=' + encodeURIComponent(rawQuery[k]))
