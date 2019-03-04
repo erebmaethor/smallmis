@@ -5,7 +5,7 @@ import parseCustomDate from './parseCustomDate';
 // chars 'f' or 'm' (or russian 'ж' or 'м') marks officialSex,
 // and word that parses to date is the dateOfBirth
 
-const parseSearchLine = (line, state) => {
+const parseSearchLine = line => {
   let textFields = [];
   let sexField, dateOfBirthField;
 
@@ -48,7 +48,7 @@ const parseSearchLine = (line, state) => {
       return;
     });
 
-  const newState = Object.assign({}, state);
+  let newState = { familyName: {}, firstName: {}, fathersName: {} };
 
   // textFields[0]: familyName
   if (textFields[0] === undefined) {
@@ -56,6 +56,7 @@ const parseSearchLine = (line, state) => {
     newState.familyName.error = false;
   } else {
     if (textFields[0].error) {
+      newState.familyName.value = '';
       newState.familyName.error = true;
     } else {
       newState.familyName.value = textFields[0].value;
@@ -69,6 +70,7 @@ const parseSearchLine = (line, state) => {
     newState.firstName.error = false;
   } else {
     if (textFields[1].error) {
+      newState.firstName.value = '';
       newState.firstName.error = true;
     } else {
       newState.firstName.value = textFields[1].value;
@@ -82,6 +84,7 @@ const parseSearchLine = (line, state) => {
     newState.fathersName.error = false;
   } else {
     if (textFields[2].error) {
+      newState.fathersName.value = '';
       newState.fathersName.error = true;
     } else {
       newState.fathersName.value = textFields[2].value;
@@ -101,6 +104,21 @@ const parseSearchLine = (line, state) => {
     newState.dateOfBirth = dateOfBirthField;
   } else {
     newState.dateOfBirth = '';
+  }
+
+  // allowNewPat - is there enouth info for create new patient?
+  if (
+    newState.familyName.value !== '' &&
+    !newState.familyName.error &&
+    newState.firstName.value !== '' &&
+    !newState.firstName.error &&
+    !newState.fathersName.error &&
+    newState.officialSex !== '' &&
+    newState.dateOfBirth !== ''
+  ) {
+    newState.allowNewPat = 1;
+  } else {
+    newState.allowNewPat = 0;
   }
 
   return newState;

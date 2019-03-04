@@ -5,5 +5,5 @@ module.exports = async (request, h, err) => {
     .takeover();
 };
 
-// this function will be rewrite to provide advanced error reporting to frontend
+// this function will be rewrited to provide advanced error reporting to frontend
 // later

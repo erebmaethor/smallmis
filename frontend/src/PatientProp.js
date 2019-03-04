@@ -1,7 +1,7 @@
 import React from 'react';
 
 // props label, error, value,
-const PatientProp = props => {
+export default function PatientProp(props) {
   let style = {};
   if (props.error) {
     style = { color: 'red' };
@@ -13,6 +13,4 @@ const PatientProp = props => {
       <strong>{props.value} </strong>
     </>
   );
-};
-
-export default PatientProp;
+}
