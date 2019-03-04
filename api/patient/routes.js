@@ -53,6 +53,7 @@ module.exports = [
       },
       tags: ['api', 'patient'],
       description: 'Adds patient to the DB and returns full info of him/her (including _id).',
+      cors: true, /////////////////// it must be changed before deploy to prduction!!!
     },
   },
 
@@ -69,6 +70,7 @@ module.exports = [
       },
       tags: ['api', 'patient'],
       description: 'Returns all patient info.',
+      cors: true, /////////////////// it must be changed before deploy to prduction!!!
     },
   },
 
@@ -94,6 +96,7 @@ module.exports = [
       },
       tags: ['api', 'patient'],
       description: 'Updates patient info.',
+      cors: true, /////////////////// it must be changed before deploy to prduction!!!
     },
   },
 
@@ -109,6 +112,7 @@ module.exports = [
       },
       tags: ['api', 'patient'],
       description: 'Deletes patient info.',
+      cors: true, /////////////////// it must be changed before deploy to prduction!!!
     },
   },
 ];
