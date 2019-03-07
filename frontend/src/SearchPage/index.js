@@ -6,7 +6,7 @@ import fetchPatsSearch from './fetchPatsSearch';
 import NewPatientSubmitButton from './NewPatientSubmitButton';
 import sendNewPatient from './sendNewPatient';
 
-class SearchForm extends Component {
+export default class SearchPage extends Component {
   constructor(props) {
     super(props);
 
@@ -124,5 +124,3 @@ class SearchForm extends Component {
     );
   }
 }
-
-export default SearchForm;
