@@ -5,6 +5,7 @@ import PatientsTable from './PatientsTable';
 import fetchPatsSearch from './fetchPatsSearch';
 import NewPatientSubmitButton from './NewPatientSubmitButton';
 import sendNewPatient from './sendNewPatient';
+import { Redirect } from 'react-router-dom';
 
 export default class SearchPage extends Component {
   constructor(props) {
@@ -20,6 +21,7 @@ export default class SearchPage extends Component {
       errorMessage: '',
       reqTimer: false,
       allowNewPat: 0, // if we have enouth info for create new patient, switch to 1; pending - 2
+      redirect: false,
     };
 
     this.handleSearchType = this.handleSearchType.bind(this);
@@ -75,7 +77,8 @@ export default class SearchPage extends Component {
 
     this.setState({ allowNewPat: 2 }); // set submit button view to 'pending'
     try {
-      await sendNewPatient(this.state);
+      const newPat = await sendNewPatient(this.state);
+      newState.redirect = '/patient/' + newPat._id;
     } catch (error) {
       newState.errorMessage = error.message;
     } finally {
@@ -85,6 +88,9 @@ export default class SearchPage extends Component {
   }
 
   render() {
+    if (this.state.redirect) {
+      return <Redirect to={this.state.redirect} />;
+    }
     return (
       <form name="searchForm" onSubmit={this.handleFormSubmit}>
         <p className="cathead">Search:</p>

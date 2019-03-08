@@ -12,7 +12,9 @@ export default function PatientsTable(props) {
         <td className="tb">{tools.ruSex(patient.officialSex)}</td>
         <td className="tb">{tools.calculateAge(patient.dateOfBirth, patient.lastUpdate)}</td>
         <td className="tb">{patient.lastUpdate.substr(0, 10)}</td>
-        <td className="tb"><Link to={`/patient/${patient._id}`}>view</Link></td>
+        <td className="tb">
+          <Link to={`/patient/${patient._id}`}>view</Link>
+        </td>
       </tr>
     );
   });

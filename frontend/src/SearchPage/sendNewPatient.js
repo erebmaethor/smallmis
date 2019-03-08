@@ -16,10 +16,10 @@ export default async function sendNewPatient(state) {
     body: JSON.stringify(body),
     headers: reqHeaders,
   })
-    .then(response => response.text())
+    .then(response => response.json())
     .catch(error => {
       throw error;
     });
 
-  console.log(result);
+  return result;
 }
