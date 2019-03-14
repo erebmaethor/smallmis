@@ -36,9 +36,13 @@ const joiSchema = Joi.object({
     .max(30)
     .description('Any medical variants of sex.'),
 
-  address: Joi.string().regex(/^[a-zA-Zа-яА-ЯёЁ0-9 '-.,()/]+$/),
+  address: Joi.string()
+    .regex(/^[a-zA-Zа-яА-ЯёЁ0-9 '-.,()/]+$/)
+    .max(250),
 
-  phoneNumber: Joi.string().regex(/^[0-9()-+]+$/),
+  phoneNumber: Joi.string()
+    .regex(/^[0-9()-+]+$/)
+    .max(25),
 });
 
 const updatesSchema = new mongoose.Schema({

@@ -1,16 +1,17 @@
 import React from 'react';
-import tools from '../tools';
 import { Link } from 'react-router-dom';
+import Patient from '../PatientPage/PatientObject';
 
 export default function PatientsTable(props) {
   const patsRows = props.patsList.map(patient => {
+    const pat = new Patient(patient, 'ru'); // MUST access to locale after implementing locale management subsystem
     return (
       <tr key={patient._id} className="f">
+        <td className="tb">{pat.fullName}</td>
+        <td className="tb">{pat.sex}</td>
         <td className="tb">
-          {patient.familyName + ' ' + patient.firstName + ' ' + patient.fathersName}
+          {pat.calcAge(pat.lastUpdate)} {pat.actualAge}
         </td>
-        <td className="tb">{tools.ruSex(patient.officialSex)}</td>
-        <td className="tb">{tools.calculateAge(patient.dateOfBirth, patient.lastUpdate)}</td>
         <td className="tb">{patient.lastUpdate.substr(0, 10)}</td>
         <td className="tb">
           <Link to={`/patient/${patient._id}`}>view</Link>

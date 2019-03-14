@@ -1,4 +1,4 @@
-export default async function sendNewPatient(state) {
+export default async function patientPOST(state) {
   const body = {
     familyName: state.familyName.value,
     firstName: state.firstName.value,

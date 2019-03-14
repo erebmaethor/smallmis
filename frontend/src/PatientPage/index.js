@@ -1,21 +1,12 @@
-import React, { Component } from 'react';
+import React from 'react';
+import { Switch, Route, Redirect } from 'react-router-dom';
+import PatientPage from './PatientPage';
 
-export default class PatientPage extends Component {
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      queriedId: props.match.params._id,
-      patData: {},
-      error: '',
-    };
-  }
-
-  async componentDidMount() {
-    //this.state.patData._id =
-  }
-
-  render() {
-    return <p className="cathead">{this.state.queriedId}</p>;
-  }
+export default function PatientPageRouter(props) {
+  return (
+    <Switch>
+      <Route exact path="/patient/" render={props => <Redirect to="/" />} />
+      <Route path="/patient/:_id" component={PatientPage} />
+    </Switch>
+  );
 }

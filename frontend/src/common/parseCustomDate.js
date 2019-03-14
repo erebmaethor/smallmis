@@ -30,7 +30,7 @@ export default function parseCustomDate(str) {
     }
   }
   try {
-    return new Date(year, month, day).toISOString();
+    return new Date(Date.UTC(year, month, day)).toISOString();
   } catch {
     return false;
   }

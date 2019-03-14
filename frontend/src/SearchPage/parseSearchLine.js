@@ -1,4 +1,4 @@
-import parseCustomDate from './parseCustomDate';
+import parseCustomDate from '../common/parseCustomDate';
 
 // first word in search line is the family name, second - first name,
 // third - father's name (if exist),

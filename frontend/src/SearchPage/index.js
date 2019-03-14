@@ -2,9 +2,9 @@ import React, { Component } from 'react';
 import parseSearchLine from './parseSearchLine';
 import PatientProp from './PatientProp';
 import PatientsTable from './PatientsTable';
-import fetchPatsSearch from './fetchPatsSearch';
-import NewPatientSubmitButton from './NewPatientSubmitButton';
-import sendNewPatient from './sendNewPatient';
+import patientsGET from './patientsGET';
+import SubmitButton from '../common/SubmitButton';
+import patientPOST from './patientPOST';
 import { Redirect } from 'react-router-dom';
 
 export default class SearchPage extends Component {
@@ -56,7 +56,7 @@ export default class SearchPage extends Component {
   requestPatsList(newState) {
     const fetchReq = async () => {
       try {
-        newState.patsList = await fetchPatsSearch(newState);
+        newState.patsList = await patientsGET(newState);
         newState.errorMessage = '';
       } catch (error) {
         newState.patsList = [];
@@ -77,7 +77,7 @@ export default class SearchPage extends Component {
 
     this.setState({ allowNewPat: 2 }); // set submit button view to 'pending'
     try {
-      const newPat = await sendNewPatient(this.state);
+      const newPat = await patientPOST(this.state);
       newState.redirect = '/patient/' + newPat._id;
     } catch (error) {
       newState.errorMessage = error.message;
@@ -104,7 +104,7 @@ export default class SearchPage extends Component {
           onKeyUp={this.handleSearchType}
         />
         &nbsp;
-        <NewPatientSubmitButton allow={this.state.allowNewPat} />
+        <SubmitButton allow={this.state.allowNewPat} text="New patient" />
         <p className="patProps">
           <PatientProp
             label="Ф"

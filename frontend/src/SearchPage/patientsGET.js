@@ -1,4 +1,4 @@
-export default function fetchPatsSearch(newState) {
+export default function patientsGET(newState) {
   const rawQuery = {
     familyName: newState.familyName.value,
     firstName: newState.firstName.value,
