@@ -11,7 +11,7 @@ export default function SubmitButton({ allow, text }) {
 
   if (allow === 2) {
     text = 'Sending...';
-  }
+  } 
 
   return (
     <button type="submit" name="submitButton" disabled={disabled}>

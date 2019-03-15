@@ -53,7 +53,7 @@ export default function Patient(patData, locale) {
     default:
     case 'ru':
       this.fullName = `${this.familyName} ${this.firstName} ${this.fathersName}`;
-      this.sex = this.officialSex === 'f' ? 'жен.' : 'муж.';
+      this.sex = this.officialSex === 'female' ? 'жен.' : 'муж.';
       break;
     case 'en':
       this.fullName = `${this.firstName} ${this.familyName}`;

@@ -91,10 +91,11 @@ module.exports = [
           updateReason: Joi.string()
             .regex(/^[a-zA-Zа-яА-ЯёЁ0-9 '-\.,]+$/)
             .max(500)
+            .allow('')
             .description(
               'Reason of update, must be specified if official information, such as name of birth date, is changed.'
             ),
-          updateDateDeJure: Joi.date(),
+          updateDateDeJure: Joi.date().allow(''),
         }),
         failAction: validateInvalidAction,
       },

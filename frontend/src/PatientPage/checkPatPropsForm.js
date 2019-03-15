@@ -9,7 +9,7 @@ export default function checkPatPropsForm(patData) {
     officialSex: /^[male|female]+$/,
     biologicalSex: /^[a-zA-Zа-яА-ЯёЁ0-9{0,30}]+$/,
     address: /^[a-zA-Zа-яА-ЯёЁ0-9 '-.,()/{0,250}]+$/,
-    phoneNumber: /^[0-9()-+{0,25}]+$/,
+    phoneNumber: /^[0-9()+-{0,25}]+$/,
     updateReason: /^[a-zA-Zа-яА-ЯёЁ0-9 '-.,{0,500}]+$/,
     updateDateDeJure: false,
   };
@@ -53,10 +53,10 @@ export default function checkPatPropsForm(patData) {
   dateFields.forEach(fieldName => {
     const fieldValue = parseCustomDate(formValues[fieldName]);
     if (fieldValue) {
-      inForm[fieldName] = fieldValue;
+      inForm[fieldName] = fieldValue; // put converted date to inForm
       errors[fieldName] = false;
     } else {
-      inForm[fieldName] = formValues[fieldName];
+      inForm[fieldName] = formValues[fieldName]; // put erroneous value that was in field at check moment
       errors[fieldName] = true;
     }
   });

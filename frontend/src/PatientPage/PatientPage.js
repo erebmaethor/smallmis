@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import patientGET from './patientGET';
+import patientPUT from './patientPUT';
 import Patient from './PatientObject';
 import PatPropsForm from './PatPropsForm';
 import PatPropsFormShowButton from './PatPropsFormShowButton';
@@ -59,12 +60,42 @@ export default class PatientPage extends Component {
     this.setState({ formErrors: errors, formDiff: diff, patUpdateAllow: allow });
   }
 
-  handlePatUpdateSubmit(event) {
+  async handlePatUpdateSubmit(event) {
     event.preventDefault();
+    
     const { inForm, errors, diff } = checkPatPropsForm(this.state.patData);
+    
     // if diff === false - error, we don't need to ping API
     if (!diff) {
       this.showFormMessage('red', 'Error: there is nothing to update.');
+      return;
+    }
+    
+    // if there is some errors in fields - show error
+    const errsArray = Object.keys(errors).filter(key => errors[key]);
+    if (errsArray.length > 0) {
+      this.showFormMessage('red', `Erroneous data entered in form.`);
+      return;
+    }
+    
+    // check patUpdateAllow
+    if (this.state.patUpdateAllow !== 1) {
+      this.showFormMessage('red', `Not ready to send.`);
+      return;
+    }
+    
+    // set submit button view to 'pending'
+    this.setState({ patUpdateAllow: 2 }); 
+    
+    // try to send data to API
+    try {
+      const updPat = await patientPUT(inForm, this.state.patData._id);
+      this.showFormMessage('green', 'Patient info updated successfully.');
+      this.setState({patData: updPat});
+    } catch(error) {
+      this.showFormMessage('red', error.message);
+    } finally {
+      this.setState({ patUpdateAllow: 1 });
     }
   }
 
@@ -72,15 +103,15 @@ export default class PatientPage extends Component {
     const id = String(Date.now()) + Math.round(Math.random() * 10000); // unique id
     const newFormMess = this.state.formMessages.slice();
     newFormMess.push({ id: id, color: color, text: text });
-    this.setState({ formMessages: newFormMess });
 
     // set timeout to close message
-    let messOff = id => { 
+    let messOff = id => {
       const newFormMess = this.state.formMessages.slice().filter(m => !(m.id === id));
       this.setState({ formMessages: newFormMess });
     };
     messOff = messOff.bind(this);
     setTimeout(messOff, 5000, id);
+    this.setState({ formMessages: newFormMess });
   }
 
   render() {
