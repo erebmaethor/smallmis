@@ -1,14 +1,10 @@
-export default async function patientPUT(inForm, patId) {
-  const reqHeaders = new Headers({ 'Content-Type': 'application/json; charset=UTF-8' });
-
+export default async function patientDELETE(patId) {
   const result = await fetch('http://localhost:3002/patient/' + patId, {
-    method: 'PUT',
-    body: JSON.stringify(inForm),
-    headers: reqHeaders,
+    method: 'DELETE',
   })
     .then(response => {
       if (response.ok) {
-        return response.json();
+        return;
       } else {
         throw new Error('API request error');
       }

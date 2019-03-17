@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import patientGET from './patientGET';
 import patientPUT from './patientPUT';
+import patientDELETE from './patientDELETE';
 import Patient from './PatientObject';
 import PatPropsForm from './PatPropsForm';
 import PatPropsFormShowButton from './PatPropsFormShowButton';
@@ -25,6 +26,7 @@ export default class PatientPage extends Component {
     this.handlePatPropsFormShowHide = this.handlePatPropsFormShowHide.bind(this);
     this.handlePatPropsFormChange = this.handlePatPropsFormChange.bind(this);
     this.handlePatUpdateSubmit = this.handlePatUpdateSubmit.bind(this);
+    this.handlePatDelete = this.handlePatDelete.bind(this);
   }
 
   async componentDidMount() {
@@ -62,40 +64,58 @@ export default class PatientPage extends Component {
 
   async handlePatUpdateSubmit(event) {
     event.preventDefault();
-    
+
     const { inForm, errors, diff } = checkPatPropsForm(this.state.patData);
-    
+
     // if diff === false - error, we don't need to ping API
     if (!diff) {
       this.showFormMessage('red', 'Error: there is nothing to update.');
       return;
     }
-    
+
     // if there is some errors in fields - show error
     const errsArray = Object.keys(errors).filter(key => errors[key]);
     if (errsArray.length > 0) {
       this.showFormMessage('red', `Erroneous data entered in form.`);
       return;
     }
-    
+
     // check patUpdateAllow
     if (this.state.patUpdateAllow !== 1) {
       this.showFormMessage('red', `Not ready to send.`);
       return;
     }
-    
+
     // set submit button view to 'pending'
-    this.setState({ patUpdateAllow: 2 }); 
-    
+    this.setState({ patUpdateAllow: 2 });
+
     // try to send data to API
     try {
       const updPat = await patientPUT(inForm, this.state.patData._id);
       this.showFormMessage('green', 'Patient info updated successfully.');
-      this.setState({patData: updPat});
-    } catch(error) {
+      this.setState({ patData: updPat });
+    } catch (error) {
       this.showFormMessage('red', error.message);
     } finally {
       this.setState({ patUpdateAllow: 1 });
+    }
+  }
+
+  async handlePatDelete(event) {
+    event.preventDefault();
+    const text = 'If you really want to completely delete this patient, press this button again.';
+
+    // if del button pressed first time, show warning message and do nothing else
+    const messArr = this.state.formMessages.filter(m => m.text === text);
+    if (messArr.length === 0) {
+      this.showFormMessage('red', text);
+      return;
+    }
+    try {
+      await patientDELETE(this.state.patData._id);
+      this.showFormMessage('green', 'DELETED SUCCESSFULLY');
+    } catch (error) {
+      this.showFormMessage('red', error.message);
     }
   }
 
@@ -142,6 +162,7 @@ export default class PatientPage extends Component {
             allow={this.state.patUpdateAllow}
             messages={this.state.formMessages}
             handlerSumbit={this.handlePatUpdateSubmit}
+            handlerDelete={this.handlePatDelete}
           />
         ) : (
           <></>

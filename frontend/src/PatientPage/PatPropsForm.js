@@ -11,6 +11,7 @@ export default function PatPropsForm({
   allow,
   messages,
   handlerSumbit,
+  handlerDelete,
 }) {
   const radioset = [{ label: 'жен.', value: 'female' }, { label: 'муж.', value: 'male' }];
 
@@ -99,6 +100,13 @@ export default function PatPropsForm({
         />
         <br />
         <SubmitButton text="Send" allow={allow} />
+        <button
+          name="delete"
+          style={{ backgroundColor: '#ffb3b3', float: 'right' }}
+          onClick={handlerDelete}
+        >
+          DELETE PATIENT
+        </button>
       </p>
       {messages.map(m => (
         <p className="tb" style={{ color: m.color }} key={m.id}>
