@@ -144,11 +144,23 @@ export default class PatientPage extends Component {
     }
 
     const pat = new Patient(this.state.patData, this.state.locale);
+    let history = [];
+    if (pat.history) {
+      history = pat.history.map(upd => {
+        return (
+          <p className="tb" style={{fontSize: 8}} key={upd.date}>
+            {upd.pat.fullName} ({upd.pat.birthday}) {upd.pat.sex} до {new Date(upd.date).toLocaleDateString()}
+          </p>
+        );
+      });
+    }
+    //console.log(pat.history);
     return (
       <>
         <p className="cathead">
           {pat.fullName} {pat.actualAge} ({pat.birthday}) {pat.sex}
         </p>
+        {history}
         <PatPropsFormShowButton
           patPropsFormShow={this.state.patPropsFormShow}
           onClick={this.handlePatPropsFormShowHide}
