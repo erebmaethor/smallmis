@@ -148,8 +148,9 @@ export default class PatientPage extends Component {
     if (pat.history) {
       history = pat.history.map(upd => {
         return (
-          <p className="tb" style={{fontSize: 8}} key={upd.date}>
-            {upd.pat.fullName} ({upd.pat.birthday}) {upd.pat.sex} до {new Date(upd.date).toLocaleDateString()}
+          <p className="tb" style={{ fontSize: 8 }} key={upd.date}>
+            {upd.pat.fullName} ({upd.pat.birthday}) {upd.pat.sex} до{' '}
+            {new Date(upd.date).toLocaleDateString()}
           </p>
         );
       });

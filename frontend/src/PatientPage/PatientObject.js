@@ -117,7 +117,7 @@ export default function Patient(patData, locale, atTime = Date.now()) {
 }
 
 function getUpdateDate(dateDeJure, dateDeFacto) {
-  if (dateDeJure) { 
+  if (dateDeJure) {
     return Date.parse(dateDeJure);
   }
   return Date.parse(dateDeFacto);
