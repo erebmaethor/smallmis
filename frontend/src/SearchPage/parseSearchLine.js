@@ -1,6 +1,6 @@
 import parseCustomDate from '../common/parseCustomDate';
 
-// first word in search line is the family name, second - first name,
+// first word (divided by whitespaces) in search line is the family name, second - first name,
 // third - father's name (if exist),
 // chars 'f' or 'm' (or russian 'ж' or 'м') marks officialSex,
 // and word that parses to date is the dateOfBirth
@@ -11,7 +11,7 @@ const parseSearchLine = line => {
 
   // split search line by whitespaces, filter double (or multi) whitespaces, and try to suggest what every element
   // is it
-  line
+  String(line)
     .split(' ')
     .filter(word => word)
     .forEach(word => {
@@ -106,7 +106,7 @@ const parseSearchLine = line => {
     newState.dateOfBirth = '';
   }
 
-  // allowNewPat - is there enouth info for create new patient?
+  // allowNewPat - is there enough info for create new patient?
   if (
     newState.familyName.value !== '' &&
     !newState.familyName.error &&

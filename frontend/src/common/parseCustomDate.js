@@ -8,7 +8,7 @@
  */
 
 export default function parseCustomDate(str) {
-  let dateElements = str.split('.');
+  let dateElements = String(str).split('.');
   if (dateElements.length !== 3) {
     return false;
   }
