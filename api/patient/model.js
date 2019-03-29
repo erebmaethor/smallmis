@@ -19,6 +19,7 @@ const joiSchema = Joi.object({
   fathersName: Joi.string()
     .regex(v9s.regx.name)
     .max(100)
+    .allow('')
     .description("Father's name of patient, if specified."),
 
   dateOfBirth: Joi.date()
@@ -34,11 +35,18 @@ const joiSchema = Joi.object({
   biologicalSex: Joi.string()
     .alphanum()
     .max(30)
+    .allow('')
     .description('Any medical variants of sex.'),
 
-  address: Joi.string().regex(/^[a-zA-Zа-яА-ЯёЁ0-9 '-.,()/]+$/),
+  address: Joi.string()
+    .regex(/^[a-zA-Zа-яА-ЯёЁ0-9 '-.,()/]+$/)
+    .max(250)
+    .allow(''),
 
-  phoneNumber: Joi.string().regex(/^[0-9()-+]+$/),
+  phoneNumber: Joi.string()
+    .regex(/^[0-9()+-]+$/)
+    .allow('')
+    .max(25),
 });
 
 const updatesSchema = new mongoose.Schema({

@@ -20,6 +20,10 @@ module.exports = [
             .regex(v9s.regx.name)
             .max(100)
             .description('First name or part, same as familyName.'),
+          fathersName: Joi.string()
+            .regex(v9s.regx.name)
+            .max(100)
+            .description("Father's name or part, same as familyName."),
           limit: Joi.number()
             .integer()
             .min(1)
@@ -38,6 +42,7 @@ module.exports = [
       },
       tags: ['api', 'patients'],
       description: 'Provides list of patients.',
+      cors: true, /////////////////// it must be changed before deploy to prduction!!!
     },
   },
 
@@ -52,6 +57,7 @@ module.exports = [
       },
       tags: ['api', 'patient'],
       description: 'Adds patient to the DB and returns full info of him/her (including _id).',
+      cors: true, /////////////////// it must be changed before deploy to prduction!!!
     },
   },
 
@@ -68,6 +74,7 @@ module.exports = [
       },
       tags: ['api', 'patient'],
       description: 'Returns all patient info.',
+      cors: true, /////////////////// it must be changed before deploy to prduction!!!
     },
   },
 
@@ -84,15 +91,17 @@ module.exports = [
           updateReason: Joi.string()
             .regex(/^[a-zA-Zа-яА-ЯёЁ0-9 '-\.,]+$/)
             .max(500)
+            .allow('')
             .description(
               'Reason of update, must be specified if official information, such as name of birth date, is changed.'
             ),
-          updateDateDeJure: Joi.date(),
+          updateDateDeJure: Joi.date().allow(''),
         }),
         failAction: validateInvalidAction,
       },
       tags: ['api', 'patient'],
       description: 'Updates patient info.',
+      cors: true, /////////////////// it must be changed before deploy to prduction!!!
     },
   },
 
@@ -108,6 +117,7 @@ module.exports = [
       },
       tags: ['api', 'patient'],
       description: 'Deletes patient info.',
+      cors: true, /////////////////// it must be changed before deploy to prduction!!!
     },
   },
 ];
