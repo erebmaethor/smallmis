@@ -40,54 +40,103 @@ const parseSearchLine = line => {
         // skip processing as a text field if it is the sex descriptor
         return;
       }
-      if (word.search(/^[a-zA-Zа-яА-ЯёЁ0-9 '-]+$/) === -1) {
-        textFields.push({ error: true });
+      if (word.search(/^["]{0,1}[a-zA-Zа-яА-ЯёЁ0-9 '-]{0,}["]{0,1}$/) === -1) {
+        textFields.push({ value: '', error: true });
       } else {
         textFields.push({ value: word, error: false });
       }
       return;
     });
 
+  // words (now - textFields) wrapped into quotes (") we join into one word
+  let textFieldsJoined = [];
+  let j = 0;
+  let quotesAreOpened = false;
+  for (let i = 0; i < textFields.length; i++) {
+    if (!textFieldsJoined[j]) {
+      textFieldsJoined[j] = { value: '', error: false };
+    }
+    let ioq = textFields[i].value.indexOf('"');
+    // quotes opening
+    if (ioq === 0) {
+      textFieldsJoined[j].value = textFieldsJoined[j].value + ' ' + textFields[i].value.slice(1);
+      // if textFields[i].error === false, it doesn't change textFieldsJoined[j].error back to false
+      // if it already true
+      if (textFields[i].error) {
+        textFieldsJoined[j].error = true;
+      }
+      quotesAreOpened = true;
+      continue;
+    }
+    // quotes closing
+    if (ioq === textFields[i].value.length - 1) {
+      textFieldsJoined[j].value =
+        textFieldsJoined[j].value + ' ' + textFields[i].value.slice(0, -1);
+      textFieldsJoined[j].value = textFieldsJoined[j].value.slice(1); // remove leading whitespace
+      if (textFields[i].error) {
+        textFieldsJoined[j].error = true;
+      }
+      j++;
+      quotesAreOpened = false;
+      continue;
+    }
+    // quotes opened
+    if (ioq === -1 && quotesAreOpened) {
+      textFieldsJoined[j].value = textFieldsJoined[j].value + ' ' + textFields[i].value;
+      continue;
+    }
+    // if not wrapped - change first char to uppercase, other - to lowercase
+    if (ioq === -1) {
+      if (!textFields[i].error) {
+        textFields[i].value =
+          textFields[i].value[0].toUpperCase() + textFields[i].value.slice(1).toLowerCase();
+      }
+      textFieldsJoined[j].value = textFields[i].value;
+      textFieldsJoined[j].error = textFields[i].error;
+      j++;
+    }
+  }
+
   let newState = { familyName: {}, firstName: {}, fathersName: {} };
 
-  // textFields[0]: familyName
-  if (textFields[0] === undefined) {
+  // textFieldsJoined[0]: familyName
+  if (textFieldsJoined[0] === undefined) {
     newState.familyName.value = '';
     newState.familyName.error = false;
   } else {
-    if (textFields[0].error) {
+    if (textFieldsJoined[0].error) {
       newState.familyName.value = '';
       newState.familyName.error = true;
     } else {
-      newState.familyName.value = textFields[0].value;
+      newState.familyName.value = textFieldsJoined[0].value;
       newState.familyName.error = false;
     }
   }
 
-  // textFields[1]: firstName
-  if (textFields[1] === undefined) {
+  // textFieldsJoined[1]: firstName
+  if (textFieldsJoined[1] === undefined) {
     newState.firstName.value = '';
     newState.firstName.error = false;
   } else {
-    if (textFields[1].error) {
+    if (textFieldsJoined[1].error) {
       newState.firstName.value = '';
       newState.firstName.error = true;
     } else {
-      newState.firstName.value = textFields[1].value;
+      newState.firstName.value = textFieldsJoined[1].value;
       newState.firstName.error = false;
     }
   }
 
-  // textFields[2]: fathersName
-  if (textFields[2] === undefined) {
+  // textFieldsJoined[2]: fathersName
+  if (textFieldsJoined[2] === undefined) {
     newState.fathersName.value = '';
     newState.fathersName.error = false;
   } else {
-    if (textFields[2].error) {
+    if (textFieldsJoined[2].error) {
       newState.fathersName.value = '';
       newState.fathersName.error = true;
     } else {
-      newState.fathersName.value = textFields[2].value;
+      newState.fathersName.value = textFieldsJoined[2].value;
       newState.fathersName.error = false;
     }
   }
