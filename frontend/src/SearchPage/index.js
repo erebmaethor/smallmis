@@ -91,6 +91,8 @@ export default class SearchPage extends Component {
     if (this.state.redirect) {
       return <Redirect to={this.state.redirect} />;
     }
+    let bDateStr = new Date(this.state.dateOfBirth).toLocaleDateString();
+    if (bDateStr === 'Invalid Date') bDateStr = '';
     return (
       <form name="searchForm" onSubmit={this.handleFormSubmit}>
         <p className="cathead">Search:</p>
@@ -122,7 +124,7 @@ export default class SearchPage extends Component {
             value={this.state.fathersName.value}
           />
           <PatientProp label="пол" value={this.state.officialSex} />
-          <PatientProp label="Дата рожд." value={this.state.dateOfBirth.substr(0, 10)} />
+          <PatientProp label="Дата рожд." value={bDateStr} />
         </p>
         <p style={{ color: 'red' }}>{this.state.errorMessage}</p>
         <PatientsTable patsList={this.state.patsList} />
